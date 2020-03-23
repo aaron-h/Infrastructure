@@ -94,7 +94,7 @@ function Main {
       Log-Write -LogPath $sLogFile -LineValue "Installing UiPath Robot Type [$RobotType]"
 
       #Install the Robot
-      if ($RobotType -eq "Unattended" -or "Attended" ) {
+      if ($RobotType -eq "Unattended" -or $RobotType -eq "Attended" ) {
         # log log log
         Log-Write -LogPath $sLogFile -LineValue "Installing UiPath Robot without Studio Feature"
         $msiFeatures = @("DesktopFeature", "Robot", "StartupLauncher", "RegisterService", "Packages")
@@ -148,7 +148,7 @@ function Main {
     Try {
 
       #Provision Robot Type to Orchestrator
-      if ($RobotType -eq "Unattended" -or "Development") {
+      if ($RobotType -eq "Unattended" -or $RobotType -eq "Development") {
         $dataRobot = @{
           MachineName       = $env:computername
           Username          = $adminUsername
