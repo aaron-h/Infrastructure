@@ -40,7 +40,7 @@ $sScriptVersion = "1.0"
 #Debug mode; $true - enabled ; $false - disabled
 $sDebug = $true
 #Log File Info
-$sLogPath = "C:\Temp"
+$sLogPath = "C:\temp\log"
 $sLogName = "Install-UiPathRobot.log"
 $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
 #Orchestrator SSL check
