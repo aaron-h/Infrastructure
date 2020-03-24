@@ -40,7 +40,7 @@ $sScriptVersion = "1.0"
 #Debug mode; $true - enabled ; $false - disabled
 $sDebug = $true
 #Log File Info
-$sLogPath = "C:\Windows\Temp"
+$sLogPath = "C:\Temp"
 $sLogName = "Install-UiPathRobot.log"
 $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
 #Orchestrator SSL check
@@ -68,9 +68,9 @@ function Main {
 
     #Download UiPlatform
     $msiPath = Join-Path $script:tempDirectory $artifactFileName
-    
+
     $maxAttempts = 5 #set the maximum number of attempts in case the download will never succeed.
-	
+
     $attemptCount = 0
 
     Do {
@@ -253,7 +253,7 @@ function Main {
     }
 
     if ($addRobotsToExistingEnvs -eq "Yes") {
-      
+
       #add Robot to existing Envs
       $getOdataEnv = "$orchestratorUrl/odata/Environments"
 
@@ -409,29 +409,29 @@ function Download-File {
   )
 
   Write-Verbose "Downloading file from $url to local path $outputFile"
-	  
+
   Try {
 
     $webClient = New-Object System.Net.WebClient
-	  
+
   }
-	
+
   Catch {
-	
+
     Log-Error -LogPath $sLogFile -ErrorDesc "The following error occurred: $_" -ExitGracefully $True
-		
+
   }
-	
+
   Try {
-	
+
     $webClient.DownloadFile($url, $outputFile)
-	  
+
   }
-	
+
   Catch {
-	
+
     Log-Error -LogPath $sLogFile -ErrorDesc "The following error occurred: $_" -ExitGracefully $True
-	
+
   }
 }
 
