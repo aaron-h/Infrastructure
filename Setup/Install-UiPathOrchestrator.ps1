@@ -207,8 +207,17 @@ function Main {
     Install-UrlRewrite -urlRWpath "$tempDirectory\rewrite_amd64.msi"
 
     # install .Net 4.7.2
-    & "$tempDirectory\NDP472-KB4054530-x86-x64-AllOS-ENU.exe" /q /norestart
-
+    #& "$tempDirectory\NDP472-KB4054530-x86-x64-AllOS-ENU.exe" /q /norestart
+    Log-Write -LogPath $sLogPath -LineValue "Install .Net Framework 4.7.2 started" 
+    $p = New-Object System.Diagnostics.Process
+    $pinfo = New-Object System.Diagnostics.ProcessStartInfo("$tempDirectory\NDP472-KB4054530-x86-x64-AllOS-ENU.exe /q /norestart","");
+    $p.StartInfo = $pinfo;
+    $p.Start();
+    $p.WaitForExit();
+    Write-Host "end of ps1" + (Get-Date).DateTime
+    Log-Write -LogPath $sLogPath -LineValue "Install .Net Framework 4.7.2 Completed!" 
+    
+    
     # ((Invoke-WebRequest -Uri http://169.254.169.254/latest/meta-data/public-hostname -UseBasicParsing).RawContent -split "`n")[-1]
 
     $cert = New-SelfSignedCertificate -DnsName "$env:COMPUTERNAME", "$orchestratorHostname" -CertStoreLocation cert:\LocalMachine\My -FriendlyName "Orchestrator Self-Signed certificate" -KeySpec Signature -HashAlgorithm SHA256 -KeyExportPolicy Exportable  -NotAfter (Get-Date).AddYears(20)
