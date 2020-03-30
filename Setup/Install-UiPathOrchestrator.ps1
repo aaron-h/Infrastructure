@@ -210,7 +210,7 @@ function Main {
     #& "$tempDirectory\NDP472-KB4054530-x86-x64-AllOS-ENU.exe" /q /norestart
     Log-Write -LogPath $sLogPath -LineValue "Install .Net Framework 4.7.2 started" 
     $p = New-Object System.Diagnostics.Process
-    $pinfo = New-Object System.Diagnostics.ProcessStartInfo("'$tempDirectory\NDP472-KB4054530-x86-x64-AllOS-ENU.exe' /q /norestart","");
+    $pinfo = New-Object System.Diagnostics.ProcessStartInfo("C:\temp\UiPath-20200330080056099\NDP472-KB4054530-x86-x64-AllOS-ENU.exe","/q /norestart");
     $p.StartInfo = $pinfo;
     $p.Start();
     $p.WaitForExit();
